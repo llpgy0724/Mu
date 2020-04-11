@@ -14,18 +14,18 @@ class User(db.Model):
     password = db.Column(db.String(32))
     name = db.Column(db.String(32), unique=True)
     token = db.Column(db.String(32), unique=True)
+    register_time = db.Column(db.String(50), unique=True)
     salt = db.Column(db.String(32), unique=True)
     status = db.Column(db.Integer, unique=True)
-    register_time = db.Column(db.String(50), unique=True)
 
-    def __init__(self, username, password, name, token, salt, status, register_time):
+    def __init__(self, username, password, name, token, register_time, salt, status):
         self.username = username
         self.password = password
         self.name = name
         self.token = token
+        self.register_time = register_time
         self.salt = salt
         self.status = status
-        self.register_time = register_time
 
     def __repr__(self):
         return '<User %r>' % self.token

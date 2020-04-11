@@ -1,5 +1,8 @@
+import base64
+import hashlib
 import random
 import string
+
 
 def generateSalt(length=16):
     salt = [random.choice((string.ascii_lowercase + string.ascii_uppercase + string.digits)) for i in range(length)]
@@ -7,5 +10,11 @@ def generateSalt(length=16):
 
 
 def generatePassword(pwd, salt):
-    m = hasslib
-    pass
+    m = hashlib.md5()
+    var_str = "%s-%s" % (base64.encodebytes(pwd.encode("utf-8")), salt)
+    m.update(var_str.encode("utf-8"))
+    return m.hexdigest()
+
+
+def generateToken():
+    return generateSalt(32)
